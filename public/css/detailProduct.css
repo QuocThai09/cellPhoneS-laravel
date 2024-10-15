@@ -1,0 +1,544 @@
+.header-tab {
+    position: fixed;
+    top: 105px;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    height: 30px;
+    box-shadow: 0.1px 0.1px 3px #b2b1b1;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.header-tab .tab-item {
+    position: relative;
+    left: 50%;
+    width: 75%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.header-tab .tab-item a {
+    font-size: 0.75rem;
+    color: #817878;
+    text-decoration: none;
+}
+
+.main-detail-product {
+    position: relative;
+    left: 50%;
+    width: 75%;
+    transform: translateX(-50%);
+    top: 135px;
+}
+
+.swiper-detail-product {
+    width: 700px;
+    height: 400px;
+    border-radius: 10px;
+    border: 1px solid rgb(219, 212, 212);
+}
+
+.swiper-detail-product-item {
+    display: grid;
+    place-items: center;
+    width: 400px;
+}
+
+.swiper-detail {
+    width: 700px;
+}
+
+.swiper-detail .slick-list .slick-track .slick-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.swiper-detail .slick-prev {
+    margin-left: 65px;
+    background-color: #575454;
+    border-radius: 0 90% 90% 0 / 50%;
+    height: 55px;
+    width: 30px;
+    box-shadow: 2px 0 10px #b2b1b1;
+}
+
+.swiper-detail .slick-next {
+    margin-right: 68px;
+    background-color: #575454;
+    border-radius: 90% 0 0 90%/50%;
+    height: 55px;
+    width: 30px;
+    box-shadow: -2px 0.5px 7px 0px #b2b1b1;
+}
+
+.item-start {
+    background: linear-gradient(
+        to right,
+        rgb(222, 96, 137),
+        rgb(247, 186, 151)
+    );
+    width: 700px;
+    height: 400px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 5px;
+    color: #ffffff;
+}
+
+.item-conten h5 {
+    margin-left: 100px;
+    margin-top: 100px;
+}
+
+.item-conten ul {
+    text-align: justify;
+    width: 400px;
+    font-size: 0.75rem;
+    height: 180px;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.item-img {
+    border-radius: 10px;
+    width: 270px;
+    height: 270px;
+    background-color: #ffffff;
+    margin-top: 60px;
+}
+
+.swiper-detail-nav .slick-list .slick-track .slick-slide {
+    margin: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(209, 206, 206);
+    width: 60px !important;
+    height: 54px;
+    background-color: #ffffff;
+}
+
+.swiper-detail-nav .slick-list .slick-track .slick-current {
+    border: 1px solid rgb(238, 13, 13);
+}
+
+.swiper-detail-nav p {
+    font-size: 0.6rem;
+    color: rgb(102, 99, 99);
+    font-weight: bold;
+}
+
+.product-name {
+    display: flex;
+    align-items: center;
+}
+
+.product-name .name {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.product-name .star {
+    margin-top: 7px;
+}
+
+.compare {
+    border: 1px solid red;
+    color: red;
+    background-color: #ffffff;
+    margin-left: 10px;
+}
+.line {
+    height: 1.2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #f0eeee;
+}
+.box-detail-product {
+    display: flex;
+    gap: 20px;
+}
+
+.info-store {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 20px;
+}
+
+.info-product {
+    margin-top: 70px;
+    width: 345px;
+    height: 240px;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    border: 1px solid rgb(212, 208, 208);
+    padding: 10px;
+}
+
+.info-product div {
+    display: grid;
+    grid-template-columns: repeat(2, 20px 300px);
+    column-gap: 10px;
+}
+
+.info-product div a {
+    text-decoration: none;
+    color: red;
+}
+
+.store-product {
+    margin-top: 70px;
+    width: 330px;
+}
+
+.area-store {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 10px;
+    justify-content: center;
+}
+
+.area-store .city {
+    border-radius: 10px;
+    padding: 5px 0px 5px 0px;
+    border: 1px solid rgb(212, 208, 208);
+    font-size: 0.9rem;
+    cursor: pointer;
+    width: 162px;
+    text-align: center;
+}
+
+.area-store .district {
+    width: 162px;
+}
+
+.city-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.city-popup .city-form {
+    width: 370px;
+    height: 300px;
+    position: relative;
+    top: 25%;
+    left: 40%;
+    box-shadow: 1px 1px 5px #444444;
+    background: white;
+    border-radius: 10px;
+}
+
+.city-popup .city-form .form-header {
+    background: rgb(215, 6, 6);
+    height: 60px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.city-popup .city-form .form-header form .search {
+    background: white;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.city-popup .city-form .form-header form .search input {
+    outline: none;
+    border: none;
+    height: 30px;
+    width: 240px;
+}
+
+.city-popup .city-form .form-header .close-form {
+    color: white;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.city-popup .city-form .form-body {
+    padding: 10px;
+    overflow-y: scroll;
+    height: 230px;
+}
+
+.city-popup .city-form .form-body .data-city {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+
+/* custom scroll-y */
+.form-body::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f2e9e9;
+    border-radius: 10px;
+}
+
+.form-body::-webkit-scrollbar-thumb {
+    background-color: #aba7a7;
+    border-radius: 10px;
+}
+
+.city-popup .city-form .form-body .data-city .item-city {
+    padding: 10px;
+    border-radius: 5px;
+    list-style-type: none;
+    width: 150px;
+    margin-left: -30px;
+    border-bottom: 1px solid rgb(246, 237, 237);
+}
+
+.city-popup .city-form .form-body .data-city .item-city svg {
+    float: right;
+}
+
+.city-popup .city-form .form-body .data-city .item-city.active {
+}
+
+.city-popup .city-form .form-body .data-city .item-city:hover {
+    background: rgb(237, 224, 224);
+}
+
+.area-store select {
+    border-radius: 10px;
+    padding: 5px 20px 5px 5px;
+    border: 1px solid rgb(212, 208, 208);
+    font-size: 0.9rem;
+}
+
+.phone-address {
+    border: 1px solid rgb(212, 208, 208);
+    border-radius: 10px;
+    font-size: 0.75rem;
+    margin-top: -10px;
+    height: 175px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#phone-address::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f2e9e9;
+    border-radius: 10px;
+}
+
+#phone-address::-webkit-scrollbar-thumb {
+    background-color: #aba7a7;
+    border-radius: 10px;
+}
+
+.phone-address .item {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.phone-address .item hr {
+    width: 10px;
+    height: 1px;
+    background-color: #817878;
+    margin-left: 5px;
+}
+
+.phone-address .item .phone a {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.phone-address .item .phone a:hover {
+    text-decoration: underline;
+}
+
+.phone-address .item .address {
+    overflow: hidden;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    width: 200px;
+}
+
+.buy-with {
+    margin-top: 20px;
+}
+
+.buy-with button {
+    font-weight: bold;
+    color: red;
+    background-color: rgb(239, 219, 219);
+    border: 1px solid red;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    padding: 5px 10px 5px 10px;
+}
+
+.buy-with .card {
+    margin-top: 10px;
+    box-shadow: -2px 0.5px 7px 0px #b2b1b1;
+    width: 166px;
+    text-align: center;
+    padding: 10px 5px 10px 10px;
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+.buy-with .card .price-buy-with {
+    font-size: 0.7rem;
+    text-align: left;
+}
+
+.buy-with .card .name-tab {
+    font-size: 0.75rem;
+    margin-left: 0;
+    margin-bottom: 5px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.color-product {
+    display: flex;
+    gap: 5px;
+}
+
+.color-product .item-product {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 1px solid rgb(160, 154, 154);
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.color-product .item-product.active {
+    border: 1px solid rgb(255, 0, 0);
+}
+
+.buy-with .card .select-product {
+    border: none;
+    color: #ffffff;
+    background-color: red;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    padding: 5px 10px 5px 10px;
+    width: 145px;
+    height: 30px;
+}
+
+.buy-with .card .select-product.isSelect {
+    background-color: #3488ce;
+}
+
+.isSelect-product {
+    position: absolute;
+    left: 130px;
+    display: none;
+}
+
+.isSelect-product.active {
+    display: block;
+}
+
+.isSelect-product-color {
+    position: relative;
+    left: 10px;
+    top: -35px;
+    display: none;
+}
+
+.isSelect-product-color.active {
+    display: block;
+}
+
+.swiper-buy-with {
+    width: 700px;
+}
+
+.swiper-buy-with .slick-prev {
+    border: none;
+    margin-left: 65px;
+    background-color: #ffffff;
+    border-radius: 0 90% 90% 0 / 50%;
+    height: 55px;
+    width: 30px;
+    box-shadow: 2px 0 10px #b2b1b1;
+}
+
+.swiper-buy-with .slick-prev svg {
+    margin-left: -5px;
+}
+
+.swiper-buy-with .slick-next {
+    border: none;
+    margin-right: 68px;
+    background-color: #ffffff;
+    border-radius: 90% 0 0 90%/50%;
+    height: 55px;
+    width: 30px;
+    box-shadow: -2px 0.5px 7px 0px #b2b1b1;
+}
+
+.swiper-buy-with .slick-next svg {
+    margin-left: -10px;
+}
+
+.provisional {
+    display: flex;
+    margin-top: 10px;
+}
+
+.provisional .text-provisional {
+    width: 400px;
+    margin-right: 80px;
+}
+
+.provisional button {
+    border-radius: 5px;
+    background-color: red;
+    height: 50px;
+}
+
+.provisional .buy-now {
+    padding: 10px 32px 15px 32px;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+}
+
+.provisional .price-buy-with {
+    border: none;
+    pointer-events: none;
+    width: 100px;
+}
+
+.provisional a {
+    font-style: italic;
+}
+
+.provisional .buy-now-add {
+    margin-top: -15px;
+}
+
+.provisional .add-shopping {
+    font-size: 0.5rem;
+    border: 1px solid red;
+    background-color: #ffffff;
+    color: red;
+    position: relative;
+    top: 12px;
+}
