@@ -207,49 +207,77 @@
                 <div class="buy-with">
                   <button>Mua kèm giá sốc</button>
                   <div class="swiper-buy-with">
-                    @for ($i = 0; $i < 6; $i++)
+                    @php
+                      $countItemColor = 0;
+                      $buyWithId_tem = 0;
+                    @endphp
+                    @foreach ($buyWithProduct as $item)
+                      @php
+                          $buy_with_price_total = number_format($item->price - $item->buy_with_price,0,',','.');
+                      @endphp
                       <div class="card">
-                        <div class="isSelect-product">
-                          <svg width="25" height="25" fill="#536f49" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2.25c-5.376 0-9.75 4.374-9.75 9.75s4.374 9.75 9.75 9.75 9.75-4.374 9.75-9.75S17.376 2.25 12 2.25Zm5.074 6.482-6.3 7.5a.748.748 0 0 1-.562.268h-.013a.75.75 0 0 1-.557-.248l-2.7-3a.751.751 0 0 1 .88-1.186c.09.045.17.107.234.182l2.123 2.36 5.747-6.84a.75.75 0 0 1 1.148.964Z"></path>
-                            </svg>
-                        </div>
-                        <img src="/images/main/detail_product/text_ng_n_21__3_52.webp" width="60px" style="margin: auto" alt="">
-                        <p class="name-tab">Đồng hồ thông minh Xiaomi Redmi Watch 5 Lite-Đen</p>
-                        <div class="price-buy-with">
-                          <b style="color: rgb(168, 163, 163)">Giá niêm yết: 1.390.000</b>
-                          <b style="color: red">Giá mua kèm: 1.190.000</b>
-                        </div>
-                        <div class="color-product">
-                          <div class="item-product">
-                            <img src="/images/main/detail_product/text_ng_n_21__3_52.webp" width="25px" style="margin: auto" alt="">
-                            <div class="isSelect-product-color">
-                              <svg width="10" height="10" fill="#536f49" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <?php
+                          if ($item->buy_with_id != $buyWithId_tem) {
+                            $buyWithId_tem = $item->buy_with_id;
+                            $countItemColor++;
+                            $color = 0;
+                            $listPrice = number_format($item->price,0,',','.');
+                            ?>
+                            <div class="isSelect-product product{{$countItemColor}}">
+                              <svg width="25" height="25" fill="#536f49" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2.25c-5.376 0-9.75 4.374-9.75 9.75s4.374 9.75 9.75 9.75 9.75-4.374 9.75-9.75S17.376 2.25 12 2.25Zm5.074 6.482-6.3 7.5a.748.748 0 0 1-.562.268h-.013a.75.75 0 0 1-.557-.248l-2.7-3a.751.751 0 0 1 .88-1.186c.09.045.17.107.234.182l2.123 2.36 5.747-6.84a.75.75 0 0 1 1.148.964Z"></path>
                                 </svg>
                             </div>
-                          </div>
-                          <div class="item-product">
-                            <img src="/images/main/detail_product/text_ng_n_25__3_3.webp" width="25px" style="margin: auto" alt="">
-                          </div>
-                        </div>
-                        <button class="select-product">Chọn sản phẩm</button>
+                            <img src="/images/main/detail_product/buy_with/{{$item->img}}" width="60px" style="margin: auto" alt="">
+                            <p class="name-tab">{{$item->product_name}}</p>
+                            <div class="price-buy-with">
+                              <b id="list-price" style="color: rgb(168, 163, 163)">Giá niêm yết: {{$listPrice}}đ</b><br>
+                              <input type="number" name="save-price" id="save-price{{$countItemColor}}" value="{{$item->buy_with_price}}" style="display: none">
+                              <b style="color: red">Giá mua kèm: {{$buy_with_price_total}}đ</b>
+                              <input type="number" name="buy-with-price" id="buy-with-price{{$countItemColor}}" value="{{$item->price - $item->buy_with_price}}" style="display: none">
+                            </div>
+                            <div class="color-product product{{$countItemColor}}">
+                              @foreach ($colorBuyWithProduct as $value)
+                                @if ($value->product_id == $item->buy_with_id)
+                                  @php
+                                    $color++;
+                                  @endphp
+                                    <div id="item-product" class="item-product product{{$countItemColor}} color{{$color}}">
+                                      <img src="/images/main/detail_product/color_products/{{$value->img_color_product}}" width="25px" style="margin: auto" alt="">
+                                      <div class="isSelect-product-color product{{$countItemColor}} color{{$color}}">
+                                        <svg width="10" height="10" fill="#536f49" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M12 2.25c-5.376 0-9.75 4.374-9.75 9.75s4.374 9.75 9.75 9.75 9.75-4.374 9.75-9.75S17.376 2.25 12 2.25Zm5.074 6.482-6.3 7.5a.748.748 0 0 1-.562.268h-.013a.75.75 0 0 1-.557-.248l-2.7-3a.751.751 0 0 1 .88-1.186c.09.045.17.107.234.182l2.123 2.36 5.747-6.84a.75.75 0 0 1 1.148.964Z"></path>
+                                        </svg>
+                                      </div>
+                                    </div>
+                                @endif
+                              @endforeach
+                            </div>
+                              <button class="select-product product{{$countItemColor}}">Chọn sản phẩm</button>
+                            <?php
+                          }
+                        ?>
                       </div>
-                    @endfor
+                    @endforeach
                   </div>
                 </div>
 
                 <div class="provisional">
                   <div class="text-provisional">
-                    <b>Tạm tính: <input class="price-buy-with" type="text" name="price-buy-with" id="" value="0" readonly>đ</b><br>
-                    <a>(Tiết kiệm 0d)</a>
+                    <b>Tạm tính: <a id="provisional-buy-with">0 đ</a></b><br>
+                    <b class="save-price">(Tiết kiệm <a id="provisional-save-price">0 đ</a>)</b>
                   </div>
                   <div class="buy-now-add">
                     <button class="buy-now">MUA NGAY</button>
                     <button class="add-shopping">
-                      <svg width="30" height="30" fill="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.01 16.136 4.141 4H3a1 1 0 0 1 0-2h1.985a.997.997 0 0 1 1.006.862L6.319 5H14v2H6.627l1.23 8h9.399l1.5-5h2.088l-1.886 6.287A1 1 0 0 1 18 17H7.016a.998.998 0 0 1-1.007-.864h.001ZM10 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm9 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm0-18a1 1 0 0 1 1 1v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 0 1-2 0V6h-1a1 1 0 1 1 0-2h1V3a1 1 0 0 1 1-1Z"></path>
-                      </svg>
+                      <svg width="30" height="30" fill="none" stroke="#e8808c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path>
+                        <path d="M17 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path>
+                        <path d="M17 17H6V3H4"></path>
+                        <path d="M19.143 12.002 19 13H6"></path>
+                        <path d="m6 5 6.005.429"></path>
+                        <path d="M18 3v6-6Zm-3 3h6-6Z"></path>
+                        </svg>
                       <p>Thêm vào giỏ</p>
                     </button>
                   </div>
@@ -354,13 +382,14 @@
       slidesToScroll:2,
       arrows: true,
       infinite: false,
+      centerMode: false,
       prevArrow: 
         `<button style='button' id="swiper-button-prev" class='slick-prev pull-left'>
           <svg width="25" height="25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="m15 18-6-6 6-6"></path>
           </svg>
         </button>`,
-        nextArrow:
+      nextArrow:
         `<button style='button' id="swiper-button-next" class='slick-next pull-right'> 
           <svg width="25" height="25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="m9 18 6-6-6-6"></path>
@@ -382,6 +411,114 @@
           $nextArrow.show();
         }
     });
+
+    //Lấy số lượng item slider
+    var totalItems = $('.swiper-buy-with').slick('getSlick').slideCount;
+    let priceValue = 0;
+    let savePriceValue = 0;
+    for (let index = 1; index <= totalItems; index++) {
+      //group btn chọn màu sp
+      //const btnGroup = document.querySelector('.color-product');
+      const buttons = document.querySelectorAll('.item-product.product'+index);
+      buttons.forEach(btn =>{
+        btn.addEventListener('click',function(){
+          buttons.forEach(btn => btn.classList.remove('active'));
+          btn.classList.add('active');
+        })
+      })
+
+      const btnSelectProduct = document.querySelector('.select-product.product'+index);
+      const checkIsSelectProduct = document.querySelector('.isSelect-product.product' + index);
+      const checkIsSelectColorProduct = document.querySelector('.isSelect-product-color.product' + index);
+      
+      const ColorProduct = document.querySelector('.color-product.product'+ index);
+      const countChildDivsColorProduct = ColorProduct.querySelectorAll('.item-product.product'+ index);
+
+      //kiem tra da con sp mua kem ch
+      const checkIsSelectProductBuyWith = document.querySelectorAll('.isSelect-product');
+      //btn mua hang or add gio hang
+      const btnBuyNow = document.querySelector('.buy-now');
+      const btnAddShopping = document.querySelector('.add-shopping');
+
+      //gán value provisionalBuyWith
+      const provisionalBuyWith = document.querySelector('#provisional-buy-with');
+      const provisionalSavePrice = document.querySelector('#provisional-save-price');
+      
+
+      //Kiem tra da chon sp mua kem ch
+      function isSelectColorProduct(){
+        if ($(".isSelect-product-color").hasClass("active")) {
+          btnBuyNow.classList.add('active');
+          btnAddShopping.classList.add('active');
+        }else{
+          btnBuyNow.classList.remove('active');
+          btnAddShopping.classList.remove('active');
+        }
+      }
+
+      btnSelectProduct.addEventListener('click',function(){
+        // kiểm tra xem item có được chọn màu hay chưa 
+        for (let i = 1; i <= countChildDivsColorProduct.length; i++) {
+          const activeItemProduct = document.querySelector('.item-product.product' + index + '.color' + i);
+          const checkIsSelectProductColor = document.querySelector('.isSelect-product-color.product' + index + '.color' + i);
+          //Bỏ lựa chọn màu 
+          if (btnSelectProduct.classList.contains("isSelect")) {
+            if (activeItemProduct.classList.contains("active")) {
+              btnSelectProduct.textContent = "Chọn sản phẩm";
+              btnSelectProduct.classList.remove('isSelect');
+              checkIsSelectProduct.classList.remove('active');
+              checkIsSelectProductColor.classList.remove('active');
+
+              isSelectColorProduct();
+              // trừ giá mua kèm
+              priceValue -= Number( $('#buy-with-price'+index).val());
+              savePriceValue -= Number( $('#save-price'+index).val());
+              provisionalBuyWith.textContent = priceValue.toLocaleString('de-DE') + " đ";
+              provisionalSavePrice.textContent = savePriceValue.toLocaleString('de-DE') + " đ";
+              continue;
+            }
+            
+          }else{
+            //Lựa chọn màu 
+            if (activeItemProduct.classList.contains("active")) {
+              btnSelectProduct.textContent = "Bỏ chọn sản phẩm";
+              btnSelectProduct.classList.add('isSelect');
+              checkIsSelectProduct.classList.add('active');
+              checkIsSelectProductColor.classList.add('active');
+              
+              isSelectColorProduct();
+              //Lấy giá mua kèm 
+              priceValue += Number( $('#buy-with-price'+index).val());
+              savePriceValue += Number( $('#save-price'+index).val());
+              provisionalBuyWith.textContent = priceValue.toLocaleString('de-DE') + " đ";
+              provisionalSavePrice.textContent = savePriceValue.toLocaleString('de-DE') + " đ";
+
+              continue;
+            }
+          }
+        }
+      })
+
+      
+
+      //khi click chọn màu sẽ thay đổi btn chọn giữa các màu đã và chưa được chọn
+      for (let i = 1; i <= countChildDivsColorProduct.length; i++) {
+        $(document).ready(function(){
+          $(".item-product.product" + index + ".color" + i).click(function(){
+            if ($(".isSelect-product-color.product" + index + ".color" + i).hasClass("active")) {
+              btnSelectProduct.textContent = "Bỏ chọn sản phẩm";
+              btnSelectProduct.classList.add('isSelect');
+              checkIsSelectProduct.classList.add('active');
+            }else{
+              btnSelectProduct.textContent = "Chọn sản phẩm";
+              btnSelectProduct.classList.remove('isSelect');
+              checkIsSelectProduct.classList.remove('active');
+            }
+          })
+        })
+      }
+      
+    }
   })
 </script>
 
@@ -407,42 +544,6 @@
         }
     );
   });
-</script>
-
-<script>
-  //group btn chọn màu sp 
-  const btnGroup = document.querySelector('.color-product');
-  const buttons = document.querySelectorAll('.item-product');
-  buttons.forEach(btn =>{
-    btn.addEventListener('click',function(){
-      buttons.forEach(btn => btn.classList.remove('active'));
-      btn.classList.add('active');
-    })
-  })
-
-  const btnSelectProduct = document.querySelector('.select-product');
-  const checkIsSelectProduct = document.querySelector('.isSelect-product');
-  const checkIsSelectColorProduct = document.querySelector('.isSelect-product-color');
-  const activeItemProduct = document.querySelector('.item-product');
-  let flat = false; // lặp lại thay đổi ki ấn button giữa chọn và bỏ chọn sp 
-  btnSelectProduct.addEventListener('click',function(){
-    flat = !flat;
-    if(flat){
-      btnSelectProduct.textContent = "Bỏ chọn sản phẩm";
-      checkIsSelectProduct.classList.add('active');
-      // kiểm tra xem item có được chọn màu hay chưa 
-      if (activeItemProduct.classList.contains("item-product") && activeItemProduct.classList.contains("active"))  {
-        checkIsSelectColorProduct.classList.add('active');
-      }
-      btnSelectProduct.classList.add('isSelect');
-    }else{
-      btnSelectProduct.textContent = "Chọn sản phẩm";
-      checkIsSelectProduct.classList.remove('active');
-      checkIsSelectColorProduct.classList.remove('active');
-      btnSelectProduct.classList.remove('isSelect');
-    }
-    
-  })
 </script>
 
 <script>
@@ -496,12 +597,15 @@
 <script>
   $('.district').change(function() {
     var selectedValue = $(this).val();
+    var city = document.querySelector('.city');
+    var city_name = city.textContent;
     //console.log('Selected Value:', selectedValue);
     $.ajax({
         url: "{{route('district-select')}}",
         method: "POST",
         data: { 
           id: selectedValue,
+          city_name: city_name,
           _token: '{{ csrf_token() }}'
         },
         success: function(response) {
@@ -515,14 +619,14 @@
 
 {{-- thay đổi width theo value --}}
 <script>
-  const input = document.querySelector('.price-buy-with');
+  // const input = document.querySelector('.price-buy-with');
 
-  input.addEventListener('input', function() {
-      this.style.width = `${this.value.length + 1}ch`;
-  });
+  // input.addEventListener('input', function() {
+  //     this.style.width = `${this.value.length + 1}ch`;
+  // });
 
-  // Initial width adjustment
-  input.style.width = `${input.value.length + 1}ch`;
+  // // Initial width adjustment
+  // input.style.width = `${input.value.length + 1}ch`;
 
-
+</script>
 </html>

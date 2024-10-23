@@ -386,17 +386,24 @@
 
 .buy-with .card {
     margin-top: 10px;
-    box-shadow: -2px 0.5px 7px 0px #b2b1b1;
+    box-shadow: -1px 0.5px 5px 0px #e5e2e2;
     width: 166px;
-    text-align: center;
+    text-align: left;
     padding: 10px 5px 10px 10px;
     margin-right: 10px;
     margin-left: 5px;
+}
+.slick-left {
+    margin-left: -260px;
 }
 
 .buy-with .card .price-buy-with {
     font-size: 0.7rem;
     text-align: left;
+}
+
+.swiper-buy-with .slick-list .slick-track {
+    margin-left: 0;
 }
 
 .buy-with .card .name-tab {
@@ -507,9 +514,13 @@
     margin-right: 80px;
 }
 
+.provisional .text-provisional a {
+    color: red;
+    font-style: normal;
+}
+
 .provisional button {
     border-radius: 5px;
-    background-color: red;
     height: 50px;
 }
 
@@ -534,11 +545,40 @@
     margin-top: -15px;
 }
 
+.provisional .buy-now {
+    cursor: no-drop;
+    background: rgb(232, 128, 140);
+}
+
 .provisional .add-shopping {
     font-size: 0.5rem;
-    border: 1px solid red;
+    border: 1px solid rgb(232, 128, 140);
     background-color: #ffffff;
-    color: red;
+    color: rgb(232, 128, 140);
     position: relative;
     top: 12px;
+    cursor: no-drop;
+}
+
+.provisional .buy-now.active {
+    background: #db3448;
+    cursor: pointer;
+}
+
+.provisional .add-shopping.active {
+    border: 1px solid #db3448;
+    color: #db3448;
+    cursor: pointer;
+}
+
+.provisional .save-price {
+    font-style: italic;
+    color: #a7a7a7;
+    font-weight: normal;
+}
+
+.provisional .save-price a {
+    font-style: italic;
+    color: #a7a7a7;
+    font-weight: normal;
 }
