@@ -46,6 +46,114 @@ header {
     grid-template-columns: auto auto;
     height: 40px;
 }
+
+.header-last-item.login svg {
+    margin-left: 15px;
+    margin-top: -5px;
+}
+
+.tab-login {
+    width: 230px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(174, 171, 171, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    float: right;
+    padding: 10px;
+    margin-right: 140px;
+    margin-top: -4px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.tab-login .tab {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 12px solid rgb(255, 255, 255);
+    position: absolute;
+    top: 90px;
+    right: 195px;
+}
+
+.tab-login .tab-body {
+    display: flex;
+    gap: 5px;
+}
+
+.tab-login .tab-body img {
+    margin-top: 5px;
+}
+.tab-login .tab-body label {
+    cursor: pointer;
+}
+.loginModal-header {
+    text-align: center;
+    color: rgb(235, 19, 19);
+    font-size: 20px;
+    margin: 20px 10px 10px 10px;
+}
+
+.loginModal-header span {
+    color: rgb(87, 85, 85);
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.loginModal-close {
+    position: relative;
+    top: -235px;
+    left: 320px;
+}
+
+.loginModal-close:hover svg {
+    fill: #aba7a7;
+    cursor: pointer;
+}
+#loginModal {
+    z-index: 9999;
+}
+#loginModal .modal-content {
+    width: 350px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-group button {
+    width: 150px;
+    height: 50px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.btn-group .btn-register {
+    border: 2px solid red;
+    color: red;
+    background: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn-group .btn-register:hover {
+    transform: scale(1.02);
+}
+
+.btn-group .btn-login {
+    border: none;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(90deg, #ff512f, #dd2440 51%, #ff512f);
+    transition: transform 0.3s ease-in-out, background 5s ease;
+}
+
+.btn-group .btn-login:hover {
+    transform: scale(1.02);
+    background: linear-gradient(90deg, #dd2440, #ff512f 51%, #dd2440);
+}
+
 .header-last-item:hover {
     background-color: #ff7081;
     cursor: pointer;
@@ -976,4 +1084,469 @@ label {
 .footer-end > div > a {
     text-decoration: none;
     color: #8e8989;
+}
+
+/* register  */
+.register-body {
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.register-body form {
+    margin-top: 20px;
+}
+
+.register-body .warning-text {
+    color: rgb(215, 11, 11);
+    font-size: 12px;
+    position: absolute;
+    top: 415px;
+    margin-left: 5px;
+    display: none;
+}
+
+.sp-phone {
+    top: 485px !important;
+}
+.sp-email {
+    color: rgb(215, 11, 11);
+    font-size: 12px;
+    margin-left: 5px;
+    display: none;
+    position: relative;
+    top: -40px;
+}
+.txt-email {
+    font-size: 12px;
+    font-style: italic;
+    color: #a09d9d;
+    position: relative;
+    top: -60px;
+}
+
+.register-body label {
+    color: rgb(215, 11, 11);
+    position: absolute;
+    top: 365px;
+    margin-left: 5px;
+}
+
+#lb-phone {
+    top: 435px;
+}
+
+#lb-email {
+    top: 508px;
+}
+#lb-birthday {
+    top: 595px;
+}
+#lb-pw {
+    top: 665px;
+}
+#lb-repw {
+    top: 755px;
+}
+#lb-high-school {
+    top: 1080px;
+}
+#lb-idsv {
+    top: 1142px;
+}
+#lb-nameCard {
+    top: 1215px;
+}
+#lb-emailSchool {
+    top: 1285px;
+}
+#lb-dateCard {
+    top: 1350px;
+}
+.sp-pw {
+    top: 715px !important;
+}
+.sp-pw-kt6 {
+    top: 715px !important;
+}
+.sp-repw {
+    top: 810px !important;
+}
+.sp-repw-kt6 {
+    top: 810px !important;
+}
+.sp-high-school {
+    top: 1125px !important;
+}
+.sp-idsv {
+    top: 1187px !important;
+}
+.sp-nameCard {
+    top: 1259px !important;
+}
+.txt-pw {
+    font-style: italic;
+    font-size: 12px;
+    position: relative;
+    top: -35px;
+}
+
+.register-back {
+    cursor: pointer;
+}
+
+.register-header {
+    text-align: center;
+}
+
+.register-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+}
+.login-service {
+    justify-content: center;
+    margin-top: 20px;
+    gap: 30px !important;
+}
+.login-gg {
+}
+
+.flex {
+    display: flex;
+    gap: 10px;
+}
+
+.register-line {
+    width: 60%;
+    gap: 20px;
+    margin: 0px auto 0px;
+}
+.register-line hr {
+    width: 100%;
+    height: 1.5px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.border-none {
+    border: none;
+    outline: none;
+}
+
+.register-body input {
+    padding: 5px;
+    border-bottom: 2px solid rgb(227, 224, 224);
+    width: 100%;
+}
+.register-body input[type="date"] {
+    padding: 5px;
+    border-bottom: 2px solid rgb(227, 224, 224);
+    width: 100%;
+}
+
+.register-body input:focus::placeholder {
+    opacity: 0;
+}
+
+.input-line {
+    height: 1.5px !important;
+    margin-top: -1.5px;
+    background: #ff001e;
+    width: 0%;
+    transition: width 0.5s ease;
+    margin-bottom: 35px;
+}
+
+.input-line.email {
+    margin-top: -1.5px;
+}
+
+.input-line.birthDay {
+    margin-top: -31.5px;
+}
+
+.focused {
+    width: 100%;
+}
+
+.not-focus {
+    width: 0%;
+}
+
+.close-input-user {
+    position: absolute;
+    top: 385px;
+    right: 410px;
+    cursor: pointer;
+    background: white;
+    display: none;
+}
+
+.close-input-phone {
+    position: absolute;
+    top: 455px;
+    right: 410px;
+    cursor: pointer;
+    background: white;
+    display: none;
+}
+.close-input-email {
+    position: absolute;
+    top: 525px;
+    right: 410px;
+    cursor: pointer;
+    background: white;
+    display: none;
+}
+.close-input-emailSchool {
+    position: absolute;
+    top: 1300px;
+    right: 420px;
+    cursor: pointer;
+    background: white;
+    display: none;
+}
+.close-input-high-school {
+    position: absolute;
+    top: 1095px;
+    right: 420px;
+    cursor: pointer;
+    background: white;
+    display: none;
+}
+.close-input-idsv {
+    position: absolute;
+    top: 1160px;
+    right: 420px;
+    cursor: pointer;
+    background: white;
+    display: none;
+}
+.close-input-nameCard {
+    position: absolute;
+    top: 1230px;
+    right: 420px;
+    cursor: pointer;
+    background: white;
+    display: none;
+}
+.show-pw {
+    position: absolute;
+    top: 685px;
+    right: 410px;
+    cursor: pointer;
+    background: white;
+    display: none;
+}
+.show-repw {
+    position: absolute;
+    top: 780px;
+    right: 410px;
+    cursor: pointer;
+    background: white;
+    display: none;
+}
+
+.birth-day {
+    position: relative;
+    top: -30px;
+}
+.check-box {
+    display: flex;
+    gap: 10px;
+    color: #514e4e;
+    font-size: 14px;
+    margin: 20px 0;
+}
+.check-box input {
+    padding: 0;
+    width: auto;
+    accent-color: rgb(211, 3, 3);
+}
+.register-body .btn-register {
+    width: 100%;
+    padding: 8px 0px;
+    border: none;
+    border-radius: 5px;
+    background: rgb(222, 11, 11);
+    color: white;
+    font-weight: 600;
+}
+.link-login {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.link-login a {
+    color: rgb(222, 11, 11);
+    font-weight: 700;
+    text-decoration: none;
+}
+.item-description {
+    font-size: 12px;
+    font-style: italic;
+    color: #514e4e;
+    margin: -20px 0px 20px 20px;
+}
+.box-studentInfo {
+    display: none;
+    border: 1px solid rgb(230, 227, 227);
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+}
+.box-studentInfo .header-studentInfo {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.box-studentInfo .header-studentInfo a {
+    margin-left: auto;
+}
+.box-studentInfo .option-group {
+    display: flex;
+    gap: 15px;
+}
+
+.box-studentInfo input[type="radio"] {
+    accent-color: red;
+    width: auto;
+    margin-right: -10px;
+    margin-top: 3px;
+}
+.box-studentInfo input[type="radio"] + span {
+    cursor: default;
+}
+.icon-input {
+    position: relative;
+    top: -30px;
+    left: 650px;
+    width: 25px;
+}
+.svg-icon {
+    transition: transform 0.5s;
+}
+.box-studentInfo .list-data {
+    display: none;
+    position: absolute;
+    top: 1125px;
+    left: 420px;
+    width: 678px;
+    background: #ffffff;
+    box-shadow: 0px -1px 2px #e4e1e1;
+    overflow-y: scroll;
+    height: 200px;
+}
+.box-studentInfo .list-data li {
+    text-transform: uppercase;
+    color: #000000;
+    list-style-type: none;
+    margin-left: -32px;
+    margin-top: 5px;
+    padding-left: 20px;
+    cursor: pointer;
+}
+.box-studentInfo .list-data li:hover {
+    color: #ffffff;
+    background: #437df2;
+}
+.select-option {
+    margin-top: 5px;
+}
+.select-option .save-school {
+    position: absolute;
+    top: 1080px;
+    left: 430px;
+    color: #b3b3b3;
+    display: none;
+}
+.box-studentInfo .note-student {
+    color: #919eab;
+    font-size: 12px;
+    font-style: italic;
+}
+.txt-dateCard {
+    font-size: 12px;
+    font-style: italic;
+    color: #a09d9d;
+    position: relative;
+    top: -70px;
+}
+.box-studentInfo .dateCard {
+    position: relative;
+    top: -30px;
+}
+.box-studentInfo .select-option {
+    height: 65px;
+}
+.box-studentInfo .img-card {
+    margin-top: -50px;
+}
+.box-studentInfo .img-card span {
+    font-style: italic;
+    font-size: 12px;
+    color: #a09d9d;
+}
+.up-load-img-card {
+    display: flex;
+    gap: 10px;
+}
+
+.border-card {
+    border: 2px dashed #f4f6f8;
+    padding: 5px;
+    border-radius: 8px;
+    width: 50%;
+}
+.border-card .card-hssv {
+    cursor: pointer;
+    background: #f4f6f8;
+    height: 100px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.border-card .card-hssv .lb-img {
+    position: relative;
+    top: 0px;
+    cursor: pointer;
+    color: #000000;
+    font-size: 10px;
+    text-align: center;
+}
+.hidden {
+    display: none;
+}
+.card-hssv .close-img-font {
+    position: relative;
+    right: 20px;
+    top: -20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.card-hssv .close-img-font:hover {
+    background: #423f3f;
+}
+.card-hssv .close-img-back {
+    position: relative;
+    right: 20px;
+    top: -20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.card-hssv .close-img-back:hover {
+    background: #423f3f;
 }

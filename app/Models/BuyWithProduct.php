@@ -15,5 +15,6 @@ class BuyWithProduct extends Model
         'product_key',
         'buy_with_id',
         'buy_with_price',
+        'buy_with_info',
     ];
 }

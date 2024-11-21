@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ColorProduct extends Model
+class CameraRear extends Model
 {
     use HasFactory;
-    protected $table = 'color_products';
+    protected $table = 'camera_rears';
     protected $primaryKey = 'id';
+    public $incrementing = false;
     protected $fillable = [
         'id',
-        'img_color_product',
-        'name_color',
-        'price_color',
-        'product_id',
+        'camera_primary',
+        'camera_wide_angle',
+        'camera_tele',
+        'specific_id',
     ];
 }

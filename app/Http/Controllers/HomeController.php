@@ -5,20 +5,33 @@ namespace App\Http\Controllers;
 use App\Models\Accessory;
 use App\Models\Branch;
 use App\Models\BuyWithProduct;
+use App\Models\CameraFeature;
+use App\Models\CameraFront;
+use App\Models\CameraRear;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\CharacteristicProduct;
+use App\Models\ChargingTech;
 use App\Models\City;
 use App\Models\ColorProduct;
 use App\Models\ComponentPc;
 use App\Models\DetailImageProduct;
+use App\Models\Discount;
 use App\Models\District;
 use App\Models\NewTech;
 use App\Models\Product;
+use App\Models\QuestionProduct;
+use App\Models\ScreenFeature;
+use App\Models\ShoppingCart;
 use App\Models\SliderSale;
+use App\Models\Specifications;
 use App\Models\Store;
 use App\Models\TypeProduct;
 use App\Models\UsedGood;
 use App\Models\WareHouse;
+use App\Models\Warranty;
+use App\Models\WarrantyService;
+use Symfony\Component\Console\Output\Output;
 
 class HomeController extends Controller
 {
@@ -101,8 +114,6 @@ class HomeController extends Controller
       ->where('hot',1)
       ->get();
 
-      
-
       return view('index',['categoty_db'=>$categoty_db,'accessory_db'=>$accessory_db,'product_mobile_db'=>$product_mobile_db,
       'mobile_branch_db'=>$mobile_branch_db,'product_laptop_db'=>$product_laptop_db,'laptop_branch_db'=>$laptop_branch_db,
       'product_PC_db'=>$product_PC_db,'type_product_db'=>$type_product_db,'sound_branch_db'=>$sound_branch_db,
@@ -148,14 +159,99 @@ class HomeController extends Controller
 
       //lay img mau sp mua kem
       $colorBuyWithProduct = ColorProduct::orderBy('product_id','DESC')->get();
+
+      //lay san pham tuong tu
+      $product_similar = Product::where('series','=',$product_db->series)
+      ->orderBy('product_id','DESC')
+      ->get();
+
+      if ($product_db->series == null) {
+         $count_product_similar = 1;
+      }else{
+         $count_product_similar = Product::where('series','=',$product_db->series)
+         ->count();
+      }
       
-      //dd($buyWithProduct);
+      //lay mau cua sp
+      $product_color = Product::join('color_products','products.product_id','=','color_products.product_id')
+      ->where('products.product_id','=',$product_db->product_id)
+      ->get();
+
+      //lay color dau tien
+      $product_color_first = Product::join('color_products','products.product_id','=','color_products.product_id')
+      ->where('products.product_id','=',$product_db->product_id)
+      ->first();
+
+      //bat color_id
+      $color_id = $product_color_first->id;
+      if($res->color_id){
+         $color_id = $res->color_id;
+      }
+
+      //lay bao hanh sp
+      $warranty_product = Warranty::where('product_id','=',$product_db->product_id)
+      ->get();
+
+      //lay sp tuong tu 
+      $product_similar_swiper = Product::join('branches','products.branch_id','=','branches.id')
+      ->join('type_products','branches.type_product_id','=','type_products.id')
+      ->where('type_product_name','Điện thoại, Table')
+      ->orderBy('product_id','desc')
+      ->take(9)
+      ->get();
+
+      //lay dat diem noi bac cua sp
+      $characteristic_product = CharacteristicProduct::where('product_id','=',$product_db->product_id)
+      ->get();
+
+      //lay thong so ky thuat 
+      $specifications_product = Specifications::where('product_id','=',$product_db->product_id)
+      ->first();
+
+      //lay thong so camera sau
+      $camera_rear_product = CameraRear::where('specific_id','=',$specifications_product->id)
+      ->get();
+
+      //lay thong so camera truoc
+      $camera_front_product = CameraFront::where('specific_id','=',$specifications_product->id)
+      ->get();
+
+      //lay thong so screen_features
+      $screen_features_product = ScreenFeature::where('specific_id','=',$specifications_product->id)
+      ->get();
+
+      //lay thong so camera_features
+      $camera_features_product = CameraFeature::where('specific_id','=',$specifications_product->id)
+      ->get();
+
+      //lay thong so charging_teches
+      $charging_teches_product = ChargingTech::where('specific_id','=',$specifications_product->id)
+      ->get();
+
+      //lay cau hoi ve sp
+      $question_product = QuestionProduct::where('product_id','=',$product_db->product_id)
+      ->get();
+
+      //lay discount cua sp
+      $discount_product = Product::join('discounts','id','=','discount_id')
+      ->where('product_id','=',$product_db->product_id)
+      ->first();
+
+      
+      
+      //dd($discount_product);
       //dd($colorBuyWithProduct);
       
       return view('detailProduct',['product_db'=>$product_db,'slider_sale_db'=>$slider_sale_db,
       'detail_img_db'=>$detail_img_db,'city'=>$city,'city_default'=>$city_default,'district_default'=>$district_default,
       'count_store_product'=>$count_store_product,'address_store_product'=>$address_store_product,
-      'buyWithProduct'=>$buyWithProduct,'colorBuyWithProduct'=>$colorBuyWithProduct]);
+      'buyWithProduct'=>$buyWithProduct,'colorBuyWithProduct'=>$colorBuyWithProduct,'count_product_similar'=>$count_product_similar,
+      'product_similar'=>$product_similar,'product_color'=>$product_color,'color_id'=>$color_id,'warranty_product'=>$warranty_product,
+      'product_similar_swiper'=>$product_similar_swiper,'characteristic_product'=>$characteristic_product,
+      'specifications_product'=>$specifications_product,'screen_features_product'=>$screen_features_product,
+      'camera_rear_product'=>$camera_rear_product,'camera_front_product'=>$camera_front_product,
+      'camera_features_product'=>$camera_features_product,'charging_teches_product'=>$charging_teches_product,
+      'question_product'=>$question_product,'discount_product'=>$discount_product]);
 
    }
 
@@ -352,9 +448,60 @@ class HomeController extends Controller
       return response()->json(['count_store_product'=>$count_store_product,'output_address'=>$output_address]);
    }
 
-   public function provisionalBuyWith(Request $res){
-      $provisionalBuyWith = 0;
-      $provisionalBuyWith += $res->price;
-      return response()->json(['provisionalBuyWith'=>$provisionalBuyWith]);
+   public function extendWarranty(Request $res){
+      $output ="";
+      $warranty = Warranty::where('id','=',$res->id)->get();
+      foreach ($warranty as $item) {
+         $output .='<div class="modal-header">
+                        <p>'.$item->warranty_name.'</p>
+                        <span class="close">
+                           <svg width="25" height="25" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M18 6 6 18"></path>
+                              <path d="m6 6 12 12"></path>
+                           </svg>
+                        </span>
+                     </div>
+                     <div class="modal-body">
+                        <strong>Sản phẩm áp dụng: </strong>'.$item->warranty_apply.'<br>
+                        <strong>Thời gian tham gia: </strong>'.$item->warranty_time.'<br>
+                        <strong>Quyền lợi và dịch vụ bảo hành:</strong><br>';
+                        $warranty_servise = WarrantyService::where('warranty_id','=',$item->id)->get();
+                        foreach ($warranty_servise as $val) {
+                            $output .='<span>+ '.$val->warranty_service_name.'</span><br>';
+                        }
+                        $output .='
+                        <strong>Điều kiện bảo hành: </strong>'.$item->warranty_terms.'<br>
+                        <i>Lưu ý: </i>'.$item->warranty_note.'<br>
+                        <strong>Thời gian xử lý: </strong>'.$item->warranty_processing.'<br>
+                     </div>';
+      }
+      $output .="
+         <script>
+            $('.close').click(function(){
+               $('#warrantyModal').hide();
+                $('body').css('overflow','show');
+            })
+         </script>";
+      return response()->json(['output'=>$output]);
+   }
+
+   public function feedback(Request $res){
+      $rateCommon = $res->rateCommon;
+      $ratePerforman = $res->ratePerforman;
+      $ratePin = $res->ratePin;
+      $rateCamera = $res->rateCamera;
+      $name = htmlspecialchars( basename( $_FILES["imagefeedback"]["name"]));
+      dd([$rateCommon,$ratePerforman,$ratePin,$rateCamera,$name]);
+   }
+
+   public function shoppingCart(Request $res){
+      $data = [
+         'color_id'=>$res->color_id,
+         'product_id'=>$res->product_id,
+      ];
+      $create_shoppingCart = ShoppingCart::created([
+         
+      ]);
+      //dd($data);
    }
 }

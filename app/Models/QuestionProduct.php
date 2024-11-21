@@ -5,24 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class product extends Model
+class QuestionProduct extends Model
 {
     use HasFactory;
-    protected $table = 'products';
+    protected $table = 'question_products';
     protected $primaryKey = 'id';
     public $incrementing = false;
     protected $fillable = [
+        'id',
+        'question',
+        'answer',
         'product_id',
-        'product_name',
-        'short_name',
-        'price',
-        'img',
-        'discount',
-        'hot',
-        'new',
-        'slug',
-        'series',
-        'product_intro',
-        'branch_id',
     ];
 }

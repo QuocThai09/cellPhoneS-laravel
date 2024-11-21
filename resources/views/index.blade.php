@@ -554,7 +554,7 @@
             @else
               @php
                   $discount = $item->price-($item->price*($item->discount/100));
-                  $formattedDiscount = number_format($discount,0,',','.')
+                  $formattedDiscount = number_format($discount,0,',','.');
               @endphp
               <div style="margin: 10px">
                 <div class="discount-tab1" ></div>

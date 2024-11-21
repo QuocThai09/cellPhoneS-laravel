@@ -95,18 +95,55 @@
           </div>
         </div>
 
-        <div class="header-last-item" id="call-by">
-          <svg width="25" height="25" fill="#fcfcfc" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M12 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM7 7a5 5 0 1 1 10 0A5 5 0 0 1 7 7Zm3 8a4 4 0 0 0-4 4v1a1 1 0 1 1-2 0v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1a1 1 0 1 1-2 0v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"></path>
-          </svg>
+        <div class="header-last-item login" id="call-by">
+          <svg width="25" height="25" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path>
+            <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+            <path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path>
+          </svg><br>
+          <div>
+            <label style="font-size: 12px;position: relative;top:-15px;text-align: left">Đăng nhập</label>
+          </div>
         </div>
       </div>
     </div>
+    @php
+        $url = $_SERVER['REQUEST_URI'];
+    @endphp
+    @if ($url == "/")
+      <div class="tab-login">
+        <div class="tab">
+        </div>
+        <div class="tab-body">
+          <img src="/images/header/HI.gif" alt="" width="40px" height="40px">
+          <label for="">Đăng nhập để trải nghiệm mua sắm thuận tiện và dễ dàng hơn</label>
+        </div>
+      </div>
+    @endif
   </header>
+ 
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <div class="loginModal-header">
+        <b>Smember</b><br>
+        <img src="/images/header/chibi2.webp" alt=""><br>
+        <span>Vui lòng đăng nhập tài khoản Smember để xem ưu đãi và thanh toán dễ dàng hơn.</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn-register" onclick="window.location.href='{{ route('register') }}'">Đăng ký</button>
+        <button class="btn-login">Đăng nhập</button>
+      </div>
+      <span class="loginModal-close">
+        <svg width="25" height="25" fill="#e4dcdc" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M12 21.6a9.6 9.6 0 1 0 0-19.2 9.6 9.6 0 0 0 0 19.2ZM10.448 8.752a1.2 1.2 0 0 0-1.696 1.696L10.303 12l-1.551 1.552a1.2 1.2 0 1 0 1.696 1.696L12 13.697l1.552 1.551a1.2 1.2 0 0 0 1.696-1.696L13.697 12l1.551-1.552a1.2 1.2 0 0 0-1.696-1.696L12 10.303l-1.552-1.551Z" clip-rule="evenodd"></path>
+        </svg>
+     </span>
+    </div>
+  </div>
+
 
   
 <script>
-
     const swiperEl = document.querySelector('swiper-container');
   
     const buttonNext = document.getElementById('next-swiper');
@@ -132,7 +169,7 @@
       alert('call  - by');
     });
   
-  </script>
+</script>
   {{-- js slider img --}}
   <script
         type="text/javascript"
@@ -147,3 +184,30 @@
         src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
       ></script>
   </script>
+<script>
+  $(document).ready(function(){
+    //tab nhac login an sau 10s
+    setTimeout(function(){
+      $('.tab-login').fadeOut(500);//ẩn từ từ trong 2s
+    },10000)
+    //click tab-login 
+    $('.tab-login').click(function(){
+      $('#loginModal').show();
+      $('body').css('overflow','hidden');
+    })
+
+    //click thoat modal login 
+    $('.loginModal-close').click(function(){
+      loginModal
+      $('#loginModal').hide();
+      $('body').css('overflow','show');
+    })
+
+    $(window).click(function(){
+      if ($(event.target).is('#loginModal')) {
+        $('#loginModal').hide();
+        $('body').css('overflow','show');
+      }
+    })
+  })
+</script>
